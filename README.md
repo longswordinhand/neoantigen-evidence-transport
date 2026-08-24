@@ -6,7 +6,7 @@ Reproducibility repository for **"A Transportability Audit Framework for Neoanti
 
 Personalized cancer-vaccine studies use heterogeneous sequence, expression, clonality, HLA and presentation evidence to prioritize neoantigens. This repository evaluates a separate question: **does predictive evidence retain the same meaning when an entire clinical trial is unseen?**
 
-The benchmark contains **405 administered vaccine targets from 24 patients across three published human personalized cancer-vaccine studies**. The primary audit separates four properties that are easily conflated by pooled validation:
+The manuscript benchmark contains **405 administered vaccine targets from 24 patients across three published human personalized cancer-vaccine studies**. The primary audit separates four properties that are easily conflated by pooled validation:
 
 1. whole-trial held-out discrimination;
 2. within-patient ranking;
@@ -22,15 +22,17 @@ Using only identically computed sequence-composition features, leave-one-trial-o
 ## Repository layout
 
 ```text
-data/harmonized_vaccine_targets.csv   derived, de-identified peptide-level benchmark
-src/reproduce_core_results.py         one-command reproduction of the core audits
-results/                              generated output
+src/reproduce_core_results.py         one-command core analysis script
+results/key_results.json              fixed manuscript result snapshot
+data/README.md                        benchmark provenance and release boundary
 requirements.txt                      tested Python package versions
 ```
 
+The derived analysis table is being held back from the repository only until the final source-license/redistribution check is complete. The analysis script expects it at `data/harmonized_vaccine_targets.csv`; if field-level redistribution is restricted, a reconstruction script and provenance manifest will be released instead.
+
 ## Reproduce the core results
 
-Python 3.12 was used for the manuscript analyses.
+Python 3.12 was used for the manuscript analyses. Once the derived benchmark is released:
 
 ```bash
 python -m venv .venv
