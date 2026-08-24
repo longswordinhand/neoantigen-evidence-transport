@@ -1,0 +1,31 @@
+{
+  "benchmark": {
+    "targets": 405,
+    "patients": 24,
+    "trials": 3
+  },
+  "logistic_composition_no_length": {
+    "RCC_Nature_2025_auc": 0.6391325536062378,
+    "IMPACT_2026_auc": 0.6213222568362755,
+    "GRANITE_2022_auc": 0.623015873015873
+  },
+  "trial_identity_balanced_accuracy": {
+    "length_only": 0.8432915921288014,
+    "composition_no_length": 0.4726694494136354,
+    "full_sequence": 0.7059033989266549,
+    "chance": 0.3333333333333333
+  },
+  "model_stability": {
+    "random_forest_mean_trial_auc": 0.6373908984992769,
+    "random_forest_mean_macro_patient_auc": 0.6498844990292358,
+    "extra_trees_mean_trial_auc": 0.6386178972873512,
+    "extra_trees_mean_macro_patient_auc": 0.6414303761826982,
+    "hist_gradient_boosting_mean_trial_auc": 0.5871048771114357
+  },
+  "epitope_coverage_patient_block_bootstrap": {
+    "RCC_Nature_2025_delta_macro_patient_auc": 0.04287477954144619,
+    "RCC_Nature_2025_95ci": [0.01714285714285712, 0.07594576719576718],
+    "IMPACT_2026_delta_macro_patient_auc": -0.03826137914373206,
+    "IMPACT_2026_95ci": [-0.06733832507361916, -0.013887387122681238]
+  }
+}
