@@ -22,17 +22,19 @@ Using only identically computed sequence-composition features, leave-one-trial-o
 ## Repository layout
 
 ```text
-src/reproduce_core_results.py         one-command core analysis script
-results/key_results.json              fixed manuscript result snapshot
-data/README.md                        benchmark provenance and release boundary
-requirements.txt                      tested Python package versions
+data/harmonized_vaccine_targets_features_only.csv.gz.b64
+                                          compressed features-only release benchmark
+src/reproduce_core_results.py             one-command core analysis script
+results/key_results.json                  fixed manuscript result snapshot
+data/README.md                            benchmark provenance and release boundary
+requirements.txt                          tested Python package versions
 ```
 
-The derived analysis table is being held back from the repository only until the final source-license/redistribution check is complete. The analysis script expects it at `data/harmonized_vaccine_targets.csv`; if field-level redistribution is restricted, a reconstruction script and provenance manifest will be released instead.
+The release benchmark intentionally omits raw peptide/cassette sequences and source-specific target identifiers. Patient labels are replaced by deterministic within-trial integers so patient grouping is preserved without redistributing the original labels. The table retains only the derived variables needed to reproduce the core manuscript analyses.
 
 ## Reproduce the core results
 
-Python 3.12 was used for the manuscript analyses. Once the derived benchmark is released:
+Python 3.12 was used for the manuscript analyses.
 
 ```bash
 python -m venv .venv
@@ -41,11 +43,11 @@ pip install -r requirements.txt
 python src/reproduce_core_results.py
 ```
 
-The script writes `results/reproduced_summary.json`.
+The script decodes the compressed feature table in memory and writes `results/reproduced_summary.json`.
 
 ## Data provenance
 
-The harmonized table was reconstructed from publicly available supplementary materials of three published personalized cancer-vaccine studies. It contains only published, de-identified peptide/mutation-level information. Third-party raw supplementary files are **not redistributed** here. Please obtain original files from the respective publishers and cite the source studies when reusing the data.
+The analysis table was reconstructed from publicly available supplementary materials of three published personalized cancer-vaccine studies. Third-party raw supplementary files and raw peptide sequences are **not redistributed** here. Please obtain original source files from the respective publishers and cite the source studies when reconstructing or extending the benchmark.
 
 Source cohorts used in the benchmark:
 
