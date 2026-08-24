@@ -2,8 +2,14 @@
 
 The manuscript benchmark contains 405 administered vaccine targets from 24 patients across three published human personalized cancer-vaccine studies.
 
-The analysis uses only published, de-identified peptide/mutation-level information reconstructed from public supplementary materials. Third-party raw supplementary files are not redistributed in this repository.
+The public release is `harmonized_vaccine_targets_features_only.csv.gz.b64`. It is a gzip-compressed CSV encoded as base64 text for repository portability. `src/reproduce_core_results.py` decodes it directly in memory.
 
-The harmonized analysis table used by `src/reproduce_core_results.py` is named `harmonized_vaccine_targets.csv`. It contains trial, de-identified patient identifier, administered target identifier, peptide/cassette sequence, study-specific immune-response label, identically computed sequence features, and study-native epitope-coverage annotations where reconstructable.
+To reduce third-party redistribution risk, the release table intentionally omits:
 
-Before the repository is switched from private to public, the derived table will be checked once more for source-license and redistribution compatibility. If redistribution of any derived field is restricted, the repository will instead provide a reconstruction script and provenance manifest while retaining the same analysis interface.
+- raw peptide/cassette sequences;
+- source-specific target identifiers;
+- original patient labels.
+
+Patient labels are replaced by deterministic within-trial integers so grouped validation remains exactly reproducible. The table retains trial label, response variables, sequence-derived numeric features, peptide length, and study-native epitope-density/coverage variables used by the core manuscript analyses.
+
+Third-party raw supplementary files are not redistributed in this repository. Researchers who wish to reconstruct the source-level peptide/HLA data or extend the unified NetMHCpan analysis should obtain the original supplements from the cited publishers and follow the manuscript provenance description.
