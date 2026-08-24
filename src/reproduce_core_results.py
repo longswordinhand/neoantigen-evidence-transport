@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
-"""Reproduce the core cross-trial transportability analyses from the harmonized table.
+"""Reproduce the core cross-trial transportability analyses from the released feature table.
 
-The script intentionally starts from the public derived benchmark rather than redistributing
-third-party supplementary files. It performs leave-one-trial-out prediction, within-patient
-ranking, trial-identifiability analysis, peptide-length ablation, and the study-native
-epitope-coverage sensitivity analysis used in the manuscript.
+The public benchmark intentionally omits raw peptide sequences and source-specific target IDs.
+It preserves the derived features, response labels, and within-trial patient grouping needed
+for the manuscript's core transportability audit.
 """
 from pathlib import Path
+import base64
+import gzip
+import io
 import json
 import numpy as np
 import pandas as pd
@@ -19,11 +21,12 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 
 ROOT = Path(__file__).resolve().parents[1]
-DATA = ROOT / "data" / "harmonized_vaccine_targets.csv"
+DATA_B64 = ROOT / "data" / "harmonized_vaccine_targets_features_only.csv.gz.b64"
 OUT = ROOT / "results" / "reproduced_summary.json"
 SEED = 17
 
-D = pd.read_csv(DATA)
+compressed = base64.b64decode(DATA_B64.read_text().strip())
+D = pd.read_csv(io.BytesIO(gzip.decompress(compressed)))
 TRIALS = list(D["trial"].unique())
 Y = D["response"].astype(int).to_numpy()
 COMPOSITION = [c for c in D.columns if c.startswith("frac_")] + ["aa_entropy"]
