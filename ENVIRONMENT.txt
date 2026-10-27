@@ -1,0 +1,16 @@
+Core analysis environment (frozen project):
+Python 3.12.10
+pandas 3.0.3
+NumPy 2.4.6
+scikit-learn 1.9.0
+Matplotlib 3.11.0
+
+BigMHC reproduction environment:
+Python 3.9
+PyTorch 1.13.1
+NumPy 1.21.5
+pandas 1.4.4
+psutil 5.9.4
+BigMHC official repository commit: c7e37a249317704bf96a1e3881a7ece3c3c977a6
+
+Primary random-resampling seed family: 20260831 (see archived analysis scripts/results).
